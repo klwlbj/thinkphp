@@ -29,14 +29,14 @@
                                         <li>
                         <a href="#">系统</a>
                     </li>
-                                        <li class="active">栏目管理</li>
+                                        <li class="active">文章管理</li>
                                         </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
                 <!-- Page Body -->
                 <div class="page-body">
                     
-<button type="button" tooltip="添加栏目" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('add')}'"> <i class="fa fa-plus"></i> Add
+<button type="button" tooltip="添加文章" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('add')}'"> <i class="fa fa-plus"></i> Add
 </button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -49,19 +49,26 @@
                             <tr>
                                 <th class="text-center" width="10%">ID</th>
                                 <th class="text-center">标题</th>
+                                <th class="text-center">缩略图</th>
                                 <th class="text-center">作者</th>
                                 <th class="text-center">所属栏目</th>
-
                                 <th class="text-center"width="20%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {volist name="artres" id="art"}
                             <tr>
-
-                                <td align="center">id</td>
-                                <td align="center">article</td>
-                                <td align="center">author</td>
-                                <td align="center">America</td>
+                                <td align="center">{$art.id}</td>
+                                <td >{$art.title}</td>
+                                <td align="center">
+                                    {if condition="$art['thumb'] neq ''"}
+                                    <img src="{$art.thumb}"  height="30">
+                                    {else /}
+                                    no pic
+                                    {/if}
+                                </td>
+                                <td align="center">{$art.author}</td>
+                                <td align="center">{$art.catename}</td>
                                 <td align="center">
                                     <a href="#" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
@@ -71,13 +78,13 @@
                                     </a>
                                 </td>
                             </tr>
+                            {/volist}
                         </tbody>
                     </table>
+                    </form>
                 </div>
-                </div>
-                </div>
-                <div style="padding-top:10px;width: 230px;text-align:center">
-
+                <div style="padding-top:10px;">
+                    {$artres->render()}
                 </div>
                 <div>
                 	                </div>

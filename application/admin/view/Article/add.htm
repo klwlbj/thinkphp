@@ -92,7 +92,7 @@
                             <label class="col-sm-2 control-label no-padding-right">所属栏目</label>
                             <div class="col-sm-6">
                                 <select name="cateid">
-                                    <option value="0">顶级文章</option>
+
                                     {volist name='cateres' id='cate'}
                                     <option value="{$cate.id}"><?php echo str_repeat('--',$cate['level']);?>{$cate.catename}</option>  {/volist}
                                 </select>

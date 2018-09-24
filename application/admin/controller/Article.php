@@ -6,6 +6,8 @@ use app\admin\controller\Common;
 class Article extends  Common
 {
     public  function  lst(){
+        $artres=db('article')->field('a.*,b.catename')->alias('a')->join('bk_cate b','a.cateid=b.id')->paginate(2);
+        $this->assign('artres',$artres);
         return view('list');
   }
 
@@ -18,7 +20,7 @@ class Article extends  Common
                 $file = request()->file('thumb');
                 $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
                 if($info){
-                    $thumb='localhost/newbick/' . 'public' . DS . 'uploads'.'/'.$info->getSaveName();
+                    $thumb='/newbick/' . 'public' . DS . 'uploads'.'/'.$info->getSaveName();
                     $data['thumb']=$thumb;
                 }
             }
