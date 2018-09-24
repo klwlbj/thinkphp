@@ -40,6 +40,24 @@ class Article extends  Common
         return view();
     }
     public  function  edit(){
+        if(request()->isPost()){
+            $save=db('article')->update(input('post.'));
+            if($save){
+                $this->success('success',url('lst'));
+            }
+            else{
+                $this->error('fail!');
+
+            }
+            return;
+        }
+        $cate= new CateModel();
+        $cateres= $cate->catetree();
+        $arts=db('article')->find(input('id'));
+        $this->assign(array(
+            'cateres'=>$cateres,
+            'arts'=>$arts,
+        ));
         return view();
 }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>童老师ThinkPHP交流群：484519446</title>
+    <title>tp5企业网站</title>
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,7 @@
                                 <td align="center">{$art.author}</td>
                                 <td align="center">{$art.catename}</td>
                                 <td align="center">
-                                    <a href="#" class="btn btn-primary btn-sm shiny">
+                                    <a href="{:url('edit',array('id'=>$art['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
                                     <a href="#" onClick="warning('确实要删除吗', '#')" class="btn btn-danger btn-sm shiny">
