@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+<head>
 	    <meta charset="utf-8">
     <title>tp5企业网站</title>
     <meta name="description" content="Dashboard">
@@ -49,33 +50,30 @@
                             <tr>
                                 <th class="text-center" width="10%">ID</th>
                                 <th class="text-center" width="10%">排序</th>
-                                <th class="text-center">栏目名称</th>
-                                <th class="text-center">栏目类型</th>
-
+                                <th class="text-center">标题</th>
+                                <th class="text-center">地址</th>
+                                <th class="text-center">描述</th>
                                 <th class="text-center"width="20%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                {volist name='cateres' id="cate"}
-                                <td align="center">{$cate.id}</td>
-                                <td align="center"><input name="{$cate.id}" type="text" style="width: 50px;text-align: center;"  value="{$cate.sort}"></td>
-                                <td><?php echo str_repeat('----',$cate['level']);?>{$cate.catename}</td>
-                                <td align="center">
-                                    {if condition="$cate['type'] eq 1"}
-                                    文章列表
-                                    {elseif condition="$cate['type'] eq 2"}
-                                    单页
-                                    {else /}
-                                    图片列表
-                                    {/if}
+                                {volist name='linkres' id="link"}
+                                <td align="center">{$link.id}</td>
+                                <td align="center"><input name="{$link.id}" type="text" style="width: 50px;text-align: center;"  value="{$link.sort}"></td>
+                                <td>
+                                    {$link.title}
+                                </td>
+                                <td><a target="_blank" href="{$link.url}">{$link.url}</a></td>
+                                <td >
+                                    {$link.desc}
                                 </td>
 
                                 <td align="center">
-                                    <a href="{:url('edit',array('id'=>$cate['id']))}" class="btn btn-primary btn-sm shiny">
+                                    <a href="{:url('edit',array('id'=>$link['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del',array('id'=>$cate['id']))}')" class="btn btn-danger btn-sm shiny">
+                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del',array('id'=>$link['id']))}')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -91,7 +89,7 @@
                 </div>
                 </div>
                 <div style="padding-top:10px;width: 230px;text-align:center">
-
+                    {$linkres->render()}
                 </div>
                 <div>
                 	                </div>

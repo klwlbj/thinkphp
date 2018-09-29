@@ -30,9 +30,9 @@
                         <a href="#">系统</a>
                     </li>
                                         <li>
-                        <a href="{:url('lst')}">栏目管理</a>
+                        <a href="{:url('lst')}">链接管理</a>
                     </li>
-                                        <li class="active">添加栏目</li>
+                                        <li class="active">添加链接</li>
                                         </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -44,54 +44,32 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">新增栏目</span>
+                <span class="widget-caption">新增链接</span>
             </div>
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="" method="post">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">上级栏目</label>
+                            <label for="catename" class="col-sm-2 control-label no-padding-right">链接标题</label>
                             <div class="col-sm-6">
-                                <select name="pid">
-                                    <option value="0">顶级栏目</option>
-                                    {volist name='cateres' id='cate'}
-                                    <option value="{$cate.id}"><?php echo str_repeat('--',$cate['level']);?>{$cate.catename}</option>  {/volist}
-                                </select>
-
+                                <input class="form-control" id="catename" placeholder="" name="title" required="" type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="catename" class="col-sm-2 control-label no-padding-right">栏目名称</label>
+                            <label for="url" class="col-sm-2 control-label no-padding-right">链接地址</label>
                             <div class="col-sm-6">
-                                <input class="form-control" id="catename" placeholder="" name="catename" required="" type="text">
+                                <input class="form-control" id="url" placeholder="" name="url" required="" type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
-
                         <div class="form-group">
-                            <label  class="col-sm-2 control-label no-padding-right">栏目类型</label>
+                            <label for="desc" class="col-sm-2 control-label no-padding-right">链接描述</label>
                             <div class="col-sm-6">
-                                <div class="radio" style="float: left; margin-right: 10px;">
-                                    <label>
-                                        <input type="radio" name="type" checked="checked" value="1">
-                                        <span class="text">文章列表</span>
-                                    </label>
-                                </div>
-                                <div class="radio" style="float: left; margin-right: 10px;">
-                                    <label>
-                                        <input type="radio" name="type" class="inverted" value="2" >
-                                        <span class="text">单页</span>
-                                    </label>
-                                </div>
-                                <div class="radio" style="float: left; margin-right: 10px;">
-                                    <label>
-                                        <input type="radio" name="type"  value="3">
-                                        <span class="text">图片列表</span>
-                                    </label>
-                                </div>
+                                <textarea id="desc" name="desc" class="form-control" ></textarea>
                             </div>
-                        </div>  
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">保存信息</button>

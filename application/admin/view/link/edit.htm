@@ -30,9 +30,9 @@
                         <a href="#">系统</a>
                     </li>
                     <li>
-                        <a href="{:url('lst')}">栏目管理</a>
+                        <a href="{:url('lst')}">链接管理</a>
                     </li>
-                    <li class="active">修改栏目</li>
+                    <li class="active">編輯链接</li>
                 </ul>
             </div>
             <!-- /Page Breadcrumb -->
@@ -44,54 +44,32 @@
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                         <div class="widget">
                             <div class="widget-header bordered-bottom bordered-blue">
-                                <span class="widget-caption">修改栏目</span>
+                                <span class="widget-caption">編輯链接</span>
                             </div>
                             <div class="widget-body">
                                 <div id="horizontal-form">
                                     <form class="form-horizontal" role="form" action="" method="post">
-                                        <input type="hidden" name="id" value="{$cates.id}">
+                                        <input type="hidden" name="id" id="id" value="{$links.id}"><!--注意id內不能有空格，不然会找不到字段-->
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">上级栏目</label>
+                                            <label for="title" class="col-sm-2 control-label no-padding-right">链接标题</label>
                                             <div class="col-sm-6">
-                                                <select name="pid">
-                                                    <option value="0">顶级栏目</option>
-                                                    {volist name='cateres' id='cate'}
-                                                    <option {if condition="$cates['pid'] eq $cate['id']"}selected="selected"{/if} value="{$cate.id}"><?php echo str_repeat('--',$cate['level']);?>{$cate.catename}</option>  {/volist}
-                                                </select>
-
+                                                <input class="form-control" id="title" placeholder="" name="title" required="" value="{$links.title}"type="text">
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="catename" class="col-sm-2 control-label no-padding-right">栏目名称</label>
+                                            <label for="url" class="col-sm-2 control-label no-padding-right">链接地址</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" id="catename" placeholder="" value="{$cates.catename}" name="catename" required="" type="text">
+                                                <input class="form-control" id="url" placeholder="" name="url" required="" value="{$links.url}"type="text">
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label no-padding-right">栏目类型</label>
+                                            <label for="desc" class="col-sm-2 control-label no-padding-right">链接描述</label>
                                             <div class="col-sm-6">
-                                                <div class="radio" style="float: left; margin-right: 10px;">
-                                                    <label>
-                                                        <input {if condition="$cates['type'] eq 1"}checked ="checked" {/if} type="radio" name="type"  value="1">
-                                                        <span class="text">文章列表</span>
-                                                    </label>
-                                                </div>
-                                                <div class="radio" style="float: left; margin-right: 10px;">
-                                                    <label>
-                                                        <input type="radio" name="type" class="inverted" value="2"  {if condition="$cates['type'] eq 2"}checked ="checked" {/if}>
-                                                        <span class="text">单页</span>
-                                                    </label>
-                                                </div>
-                                                <div class="radio" style="float: left; margin-right: 10px;">
-                                                    <label>
-                                                        <input type="radio" name="type" class="inverted" value="3"  {if condition="$cates['type'] eq 3"}checked ="checked" {/if}>
-                                                        <span class="text">图片列表</span>
-                                                    </label>
-                                                </div>
+                                                <textarea id="desc" name="desc" class="form-control">{$links.desc}</textarea>
                                             </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
