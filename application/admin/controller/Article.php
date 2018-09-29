@@ -3,9 +3,11 @@ namespace app\admin\controller;
 use app\admin\model\Cate as CateModel;
 use app\admin\model\Article as ArticleModel;
 use app\admin\controller\Common;
+use Common\Model\AdminModel;
+
 class Article extends  Common
 {
-    public  function  lst(){
+    public  function  lst (){
         $artres=db('article')->field('a.*,b.catename')->alias('a')->join('bk_cate b','a.cateid=b.id')->paginate(2);
         $this->assign('artres',$artres);
         return view('list');
@@ -41,13 +43,13 @@ class Article extends  Common
     }
     public  function  edit(){
         if(request()->isPost()){
-            $save=db('article')->update(input('post.'));
+            $article=new ArticleModel();
+            $save=$article->update(input('post.'));
             if($save){
                 $this->success('success',url('lst'));
             }
             else{
                 $this->error('fail!');
-
             }
             return;
         }
@@ -59,5 +61,13 @@ class Article extends  Common
             'arts'=>$arts,
         ));
         return view();
+}
+        public function del(){
+            if(ArticleModel::destroy(input('id'))){
+                $this->success('success',url('lst'));
+                }
+             else{
+                $this->error('fail!');
+    }
 }
 }

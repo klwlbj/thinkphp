@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 use app\admin\model\Cate as CateModel;
+use app\admin\model\Article as ArticleModel;
 use app\admin\controller\Common;
 class cate extends  Common
 {
@@ -11,6 +12,13 @@ class cate extends  Common
         $cateid=input('id');
         $cate= new CateModel();
         $sonids=$cate->getchildrenid($cateid);
+        $allcateid=$sonids;  /*ÙxÖµÊý×é*/
+        $allcateid[]=$cateid;
+        foreach ($allcateid as $k=>$v) {
+            $article=new ArticleModel();
+            $article->where(array('cateid'=>$v))->delete();
+
+        }
         if($sonids){
             db('cate')->delete($sonids);
         }

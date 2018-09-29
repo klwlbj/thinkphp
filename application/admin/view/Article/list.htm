@@ -73,7 +73,7 @@
                                     <a href="{:url('edit',array('id'=>$art['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '#')" class="btn btn-danger btn-sm shiny">
+                                    <a href="{:url('del',array('id'=>$art['id']))}" onClick="warning('确实要删除吗', '#')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
