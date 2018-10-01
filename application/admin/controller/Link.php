@@ -21,7 +21,12 @@ class Link extends  Common
     }
     public  function  add(){
         if (request()->isPost()){
-            $add=LinkModel::create(input('post.'));
+            $data=input('post.');
+            $validate=\think\Loader::validate('link');
+            if(!$validate->scene('add')->check($data)){
+                $this->error(($validate->getError()));
+            }/*服務器端表单验证，错误時跳出*/
+            $add=LinkModel::create($data);
             if($add){
                 $this->success('success',url('lst'));}
             else{
@@ -33,9 +38,14 @@ class Link extends  Common
     }
     public function  edit(){
         if (request()->isPost()){
+            $data=input('post.');
+            $validate=\think\Loader::validate('link');
+            if(!$validate->scene('edit')->check($data)){
+                $this->error(($validate->getError()));
+            }/*服務器端表单验证，错误時跳出*/
             $link=new LinkModel();
-            $save=$link->save(input('post.'),['id'=>input('id')]);
-            if($save){
+            $save=$link->save($data,['id'=>$data['id']]);
+            if($save!=false){
                 $this->success('success',url('lst'));}
             else{
                 $this->error('fail');
@@ -43,6 +53,7 @@ class Link extends  Common
             return;
         }
         $links=LinkModel::find(input('id'));
+      /*  dump($links);die();*/
         $this->assign('links',$links);
         return view();
     }

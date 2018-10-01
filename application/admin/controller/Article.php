@@ -16,6 +16,10 @@ class Article extends  Common
     public  function  add(){
         if(request()->isPost()){
             $data=input('post.');
+            $validate=\think\Loader::validate('article');
+            if(!$validate->scene('add')->check($data)){
+                $this->error(($validate->getError()));
+            }/*服務器端表单验证，错误時跳出*/
 //            dump($data);die;
             $article=new ArticleModel();
             if($_FILES['thumb']['tmp_name']){
@@ -43,8 +47,13 @@ class Article extends  Common
     }
     public  function  edit(){
         if(request()->isPost()){
+            $data=input('post.');
+            $validate=\think\Loader::validate('article');
+            if(!$validate->scene('edit')->check($data)){
+                $this->error(($validate->getError()));
+            }/*服務器端表单验证，错误時跳出*/
             $article=new ArticleModel();
-            $save=$article->update(input('post.'));
+            $save=$article->update($data);
             if($save){
                 $this->success('success',url('lst'));
             }
