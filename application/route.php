@@ -9,6 +9,10 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+\Think\Route::get('test','api/test/index');
+\Think\Route::put('test/:id','api/test/update');
+\Think\Route::resource('test','api/test');/*对应各方法*/
+
 return [
     '__pattern__' => [
         'name' => '\w+',
@@ -19,3 +23,4 @@ return [
     ],
 
 ];
+///*\Think\Route::get('test','api/test/index');*/

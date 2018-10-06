@@ -10,3 +10,13 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+//通用化API接口数据输出
+//业务状态码 信息提示 数据 http状态码
+function show($status,$message,$data=[],$httpCode=200){
+    $data=[
+        'status'=>$status,
+        'messsage'=>$message,
+        'data'=>$data,
+    ];
+    return json($data,$httpCode);
+}
