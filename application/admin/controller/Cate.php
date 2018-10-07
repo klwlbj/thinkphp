@@ -59,6 +59,7 @@ class cate extends  Common
 
         }
         $cateres=$cate->catetree();
+//        echo json_encode($cateres); die;
         $this->assign('cateres',$cateres);
         return view('list');
     }

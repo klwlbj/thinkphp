@@ -53,17 +53,51 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {volist name='confres' id="conf"}
-                            <tr>
-                                <td align="center">{$conf.cnname}</td>
-                                <td align="center"><input name="{conf.id}" type="text" style="max-width: 80%;min-width: 50%;text-align: center;" class="form-control" value="{$conf.values}"></td>
+                        <?php foreach ($confres as $k => $v):?>
+                        <tr>
+                            <td align="right"><?php echo $v['cnname'];?></td>
+                            <td align="left">
+                                <?php if($v['type']==1):?>
+                                <input name="<?php echo $v['enname'];?>" type="text" class="form-control" style="width:620px;" value="<?php echo $v['value'];?>">
+                                <?php elseif($v['type']==2):?>
+                                <textarea name="<?php echo $v['enname'];?>" class="form-control" align="left" style="width:620px;">
+                                                <?php echo trim($v['value']);?>
+                                            </textarea>
+                                <?php elseif($v['type']==3):
+                                            if($v['values']){
+                                                $arrradio=explode(',', $v['values']);
+                                            }//痘号分隔
+                                            foreach ($arrradio as $k1 => $v1):
+                                ?>
+                                <label style="margin-right:15px;">
+                                    <input <?php if($v['value']==$v1){echo 'checked="checked"';} ?> name="<?php echo $v['enname'];?>" value="<?php echo $v1;?>" type="radio">
+                                    <span class="text"><?php echo $v1;?></span>
+                                </label>
+                                <?php endforeach;?>
+                                <?php elseif($v['type']==4):?>
+                                <label>
+                                    <input <?php if($v['value']==$v['values']){echo 'checked="checked"';} ?> name="<?php echo $v['enname'];?>" class="colored-success" value="<?php echo $v['values'];?>" type="checkbox">
+                                    <span class="text"><?php echo $v['values'];?></span>
+                                </label>
+                                <?php elseif($v['type']==5):
+                                            if($v['values']){
+                                                $arrselect=explode(',', $v['values']);
+                                            }
+                                        ?>
+                                <select name="<?php echo $v['enname'];?>">
+                                    <?php foreach ($arrselect as $k2 => $v2):?>
+                                    <option <?php if($v['value']==$v2){echo 'selected="selected"';} ?> value="<?php echo $v2;?>"><?php echo $v2;?></option>
+                                    <?php endforeach;?>
+                                </select>
 
-                            </tr>
-                            {/volist}
+                                <?php endif;?>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
                         </tbody>
                     </table>
                     <div>
-                        <input  class="btn btn-primary btn-sm shiny" style="margin-left: 225px; margin-top: 10px " type="submit"value="sort">
+                        <input  class="btn btn-primary btn-sm shiny" style="margin-left: 225px; margin-top: 10px " type="submit"value="提交修改">
                     </div>
                 </div>
                 </div>

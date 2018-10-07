@@ -1,9 +1,9 @@
 <?php
 namespace app\api\controller;
-
+use app\exception\ApiException;
 use think\Controller;
 
-class Test extends  Controller
+class Test extends  Common
 {
     public function index()
     {
@@ -18,6 +18,11 @@ class Test extends  Controller
 
     }
     public function  save(){
+        $data= input('post.');
+        if($data['mt']!=1){
+            throw new ApiException(' illegal',400);
+        }
+
         return show(1,'OK',input('post.'),201);
     }
 }

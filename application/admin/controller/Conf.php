@@ -23,6 +23,7 @@ class Conf extends  Common
             $data=input('post.');
             if($data['values']){
                 $data['values']=str_replace('£¬',',',$data['values']);
+                $data['enname']=trim($data['enname']);
             }
             $conf=new confModel;
             if($conf->save($data)){
@@ -39,6 +40,7 @@ class Conf extends  Common
             $data=input('post.');
             if($data['values']){
                 $data['values']=str_replace('£¬',',',$data['values']);
+                $data['enname']=trim($data['enname']);
             }
             $conf=new ConfModel();
             $save=$conf->save($data,['id'=>$data['id']]);
@@ -64,6 +66,18 @@ class Conf extends  Common
         /*return view();*/
     }
     public function conf(){
+        if(request()->isPost()){
+            $data=input('post.');
+
+            if($data){
+                foreach($data as $k=>$v){
+                    ConfModel::where('enname',$k)->update(['value'=>$v]);
+                }
+                $this->success('success');
+
+            }
+            return;
+        }
         $confres=ConfModel::order('sort desc')->select();
         $this->assign('confres',$confres);
         return view();
