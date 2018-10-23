@@ -9,7 +9,22 @@
     <!-- Sidebar Menu -->
     <ul class="nav sidebar-menu">
         <!--Dashboard-->
-
+        <li>
+            <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-folder"></i>
+                <span class="menu-text">用户管理</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="{:url('admin/lst')}">
+                                    <span class="menu-text">
+                                        用户列表                                    </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li>
             <a href="#" class="menu-dropdown">
                 <i class="menu-icon fa fa-folder"></i>
@@ -17,6 +32,7 @@
                 <i class="menu-expand"></i>
             </a>
             <ul class="submenu">
+                
                 <li>
                     <a href="{:url('cate/lst')}">
                                     <span class="menu-text">
